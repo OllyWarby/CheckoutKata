@@ -15,16 +15,17 @@ namespace CheckoutKata
             basket = new List<Item>(); 
         } 
 
-        public decimal CalulateTotal(List<Item> basket)
+        public decimal CalulateTotal()
         {
-            return 0m;
+            decimal total = basket.Sum(x => x.UnitPrice);
+            return total;   
         }
 
         public void ScanItem(Item item)
         {
            basket.Add(item);
         }
-        //Added this in after writing the first unit test to return the total items for the Assert as the basket is private
+        
         public int TotalItemCount()
         {
             return basket.Count;    
@@ -34,7 +35,7 @@ namespace CheckoutKata
     interface ICheckout
     {
         void ScanItem(Item item);
-        decimal CalulateTotal(List<Item> basket);
+        decimal CalulateTotal();
     }
 
     public class Item
